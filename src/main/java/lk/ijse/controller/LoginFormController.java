@@ -20,6 +20,7 @@ import java.util.regex.Pattern;
 
 public class LoginFormController {
     public JFXTextField txtName;
+
     public static String name;
     public ImageView imageView;
     private File file;
@@ -40,7 +41,7 @@ public class LoginFormController {
 
     private void load() throws IOException {
         if (Pattern.matches("^[a-zA-Z\\s]+", txtName.getText())) {
-            Client client = new Client(txtName.getText());
+            Client client = new Client(txtName.getText(), imageView);
             Thread thread = new Thread(client);
             thread.start();
 

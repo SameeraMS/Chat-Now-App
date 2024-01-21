@@ -3,6 +3,7 @@ package lk.ijse.client;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import lk.ijse.controller.ChatFormController;
 import lombok.Getter;
@@ -17,13 +18,24 @@ public class Client implements Runnable, Serializable {
 
     @Getter
     private final String name;
+
+    @Getter
+    private ImageView imageView;
     private final Socket socket;
     private final DataInputStream inputStream;
     private final DataOutputStream outputStream;
     private ChatFormController chatFormController;
 
-    public Client(String name) throws IOException {
+
+
+    public Client(String name, ImageView imageView) throws IOException {
         this.name = name;
+        if (imageView == null) {
+
+        } else {
+            this.imageView = imageView;
+        }
+
 
         socket = new Socket("localhost", 1200);
         inputStream = new DataInputStream(socket.getInputStream());
@@ -81,6 +93,8 @@ public class Client implements Runnable, Serializable {
         Parent parent = loader.load();
         chatFormController = loader.getController();
         chatFormController.setClient(this);
+        chatFormController.lblName.setText(name);
+        chatFormController.imageView.setImage(imageView.getImage());
         stage.setResizable(false);
         stage.setScene(new Scene(parent));
         stage.setTitle(name + "'s Chat");
