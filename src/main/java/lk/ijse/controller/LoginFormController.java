@@ -47,7 +47,6 @@ public class LoginFormController {
             Parent root = fxmlLoader.load();
 
            // ChatFormController chatForm =  fxmlLoader.getController();
-
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
