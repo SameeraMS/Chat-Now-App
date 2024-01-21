@@ -119,7 +119,7 @@ public class ChatFormController {
     }
 
     void appendText(String message) {
-//        me
+       // print in my chat
         HBox hBox = new HBox();
         hBox.setStyle("-fx-alignment: center-right;-fx-fill-height: true;-fx-min-height: 50;-fx-pref-width: 520;-fx-max-width: 520;-fx-padding: 10");
         Label messageLbl = new Label(message);

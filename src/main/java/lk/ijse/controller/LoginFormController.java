@@ -47,8 +47,6 @@ public class LoginFormController {
 
             FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/view/chatForm.fxml"));
             Parent root = fxmlLoader.load();
-
-           // ChatFormController chatForm =  fxmlLoader.getController();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
