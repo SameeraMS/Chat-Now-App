@@ -37,11 +37,15 @@ public class ChatFormController {
     private LoginFormController loginFormController;
 
 
-    public void initialize() {
+    public void initialize() throws IOException {
         lblName.setText(LoginFormController.name);
+
     }
-    public void setClient(Client client) {
+    public void setClient(Client client) throws IOException {
         this.client = client;
+        String msg =" joined the chat";
+        appendText(msg);
+        client.sendMessage(msg);
     }
 
     public void grinningFaceEmojiOnAction(MouseEvent mouseEvent) {
@@ -120,12 +124,21 @@ public class ChatFormController {
 
     void appendText(String message) {
        // print in my chat
-        HBox hBox = new HBox();
-        hBox.setStyle("-fx-alignment: center-right;-fx-fill-height: true;-fx-min-height: 50;-fx-pref-width: 520;-fx-max-width: 520;-fx-padding: 10");
-        Label messageLbl = new Label(message);
-        messageLbl.setStyle("-fx-background-color:  purple;-fx-background-radius:15;-fx-font-size: 18;-fx-font-weight: normal;-fx-text-fill: white;-fx-wrap-text: true;-fx-alignment: center-left;-fx-content-display: left;-fx-padding: 10;-fx-max-width: 350;");
-        hBox.getChildren().add(messageLbl);
-        vBox.getChildren().add(hBox);
+        if (message.startsWith(" joined")) {
+            HBox hBox = new HBox();
+            hBox.setStyle("-fx-alignment: center;-fx-fill-height: true;-fx-min-height: 50;-fx-pref-width: 520;-fx-max-width: 520;-fx-padding: 10");
+            Label messageLbl = new Label(message);
+            messageLbl.setStyle("-fx-background-color: rgb(128,128,128);-fx-background-radius:15;-fx-font-size: 18;-fx-font-weight: normal;-fx-text-fill: white;-fx-wrap-text: true;-fx-alignment: center-left;-fx-content-display: left;-fx-padding: 10;-fx-max-width: 350;");
+            hBox.getChildren().add(messageLbl);
+            vBox.getChildren().add(hBox);
+        } else {
+            HBox hBox = new HBox();
+            hBox.setStyle("-fx-alignment: center-right;-fx-fill-height: true;-fx-min-height: 50;-fx-pref-width: 520;-fx-max-width: 520;-fx-padding: 10");
+            Label messageLbl = new Label(message);
+            messageLbl.setStyle("-fx-background-color:  purple;-fx-background-radius:15;-fx-font-size: 18;-fx-font-weight: normal;-fx-text-fill: white;-fx-wrap-text: true;-fx-alignment: center-left;-fx-content-display: left;-fx-padding: 10;-fx-max-width: 350;");
+            hBox.getChildren().add(messageLbl);
+            vBox.getChildren().add(hBox);
+        }
     }
 
     public void btnEmojiOnAction(ActionEvent actionEvent) {
@@ -183,11 +196,13 @@ public class ChatFormController {
     }
 
     public void writeMessage(String message) {
-        HBox hBox = new HBox();
-        hBox.setStyle("-fx-alignment: center-left;-fx-fill-height: true;-fx-min-height: 50;-fx-pref-width: 520;-fx-max-width: 520;-fx-padding: 10");
-        Label messageLbl = new Label(message);
-        messageLbl.setStyle("-fx-background-color:   #2980b9;-fx-background-radius:15;-fx-font-size: 18;-fx-font-weight: normal;-fx-text-fill: white;-fx-wrap-text: true;-fx-alignment: center-left;-fx-content-display: left;-fx-padding: 10;-fx-max-width: 350;");
-        hBox.getChildren().add(messageLbl);
-        Platform.runLater(() -> vBox.getChildren().add(hBox));
+        //print msg on other clients
+            HBox hBox = new HBox();
+            hBox.setStyle("-fx-alignment: center-left;-fx-fill-height: true;-fx-min-height: 50;-fx-pref-width: 520;-fx-max-width: 520;-fx-padding: 10");
+            Label messageLbl = new Label(message);
+            messageLbl.setStyle("-fx-background-color:   #2980b9;-fx-background-radius:15;-fx-font-size: 18;-fx-font-weight: normal;-fx-text-fill: white;-fx-wrap-text: true;-fx-alignment: center-left;-fx-content-display: left;-fx-padding: 10;-fx-max-width: 350;");
+            hBox.getChildren().add(messageLbl);
+            Platform.runLater(() -> vBox.getChildren().add(hBox));
+
     }
 }

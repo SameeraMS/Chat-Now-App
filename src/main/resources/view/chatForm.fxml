@@ -65,7 +65,7 @@
       </JFXButton>
       <ScrollPane fx:id="scrollPane" layoutX="20.0" layoutY="81.0" prefHeight="558.0" prefWidth="559.0">
          <content>
-            <VBox fx:id="vBox" prefHeight="545.0" prefWidth="524.0" />
+            <VBox fx:id="vBox" prefHeight="545.0" prefWidth="553.0" />
          </content>
       </ScrollPane>
       <AnchorPane fx:id="emojiPane" layoutX="357.0" layoutY="518.0" prefHeight="120.0" prefWidth="221.0" styleClass="emoji_pane" visible="false">
