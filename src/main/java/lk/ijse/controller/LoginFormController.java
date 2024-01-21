@@ -20,7 +20,6 @@ import java.util.regex.Pattern;
 
 public class LoginFormController {
     public JFXTextField txtName;
-    public static String name;
     public ImageView imageView;
     private File file;
 
